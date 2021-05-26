@@ -1,0 +1,8 @@
+#subsonic-container form {
+    width: auto;
+    background: #fff;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 10em 10em;
+    z-index: 1;
+}

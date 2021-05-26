@@ -142,6 +142,7 @@
     "invariant": "^2.2.3",
     "jszip": "^3.1.3",
     "lodash": "^4.17.11",
+    "md5": "^2.3.0",
     "milkdrop-preset-converter-aws": "^0.1.6",
     "music-metadata-browser": "^0.6.1",
     "react": "^17.0.1",
