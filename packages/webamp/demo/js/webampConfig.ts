@@ -2,7 +2,7 @@ import * as Sentry from "@sentry/browser";
 // @ts-ignore
 import createMiddleware from "redux-sentry-middleware";
 // @ts-ignore
-import isButterchurnSupported from "butterchurn/lib/isSupported.min";
+import isButterchurnSupported from "butterchurn/dist/isSupported.min";
 import { loggerMiddleware } from "./eventLogger";
 import * as SoundCloud from "./SoundCloud";
 
