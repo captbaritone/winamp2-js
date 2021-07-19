@@ -1,0 +1,11 @@
+{
+  "name": "winamp-forum-normalizer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "html-ast-transform": "^2.0.1",
+    "parse5": "^6.0.1"
+  }
+}
