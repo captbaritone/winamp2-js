@@ -26,10 +26,6 @@ function genAudioFileUrlsFromDropbox(): Promise<DropboxFile[]> {
 const dropboxFilePicker: FilePicker = {
   contextMenuName: "Dropbox...",
   filePicker: async () => {
-    alert(
-      `Dropbox integration is currently disabled. See https://github.com/captbaritone/webamp/issues/750 for more information.`
-    );
-    // https://github.com/captbaritone/webamp/issues/750
     const files = await genAudioFileUrlsFromDropbox();
     return files.map((file) => ({
       url: file.link,
