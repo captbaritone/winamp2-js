@@ -1,0 +1,265 @@
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+}
+.start-menu {
+	position: absolute !important; /* XXX overriding relative; could instead of using :after use border-image */
+	left: 2px;
+	bottom: 25px;
+	width: calc(186px + 21px); /* 186px isn't the proper width measured out, just what I had it before, (for the content, on chrome on windows 10; text wrapping is not cross-platform-consistent) */
+	padding-left: 21px; /* 21px = .start-menu-titlebar */
+	height: 340px;
+	max-height: calc(100vh - 26px); /* based on taskbar height TODO: do this differently, probably in JS, since the taskbar will be resizable (or could be) */
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+}
+.start-menu-titlebar {
+	flex: 0 0 auto;
+	width: 21px;
+}	
+.start-menu-content {
+	overflow: auto;
+	padding: 15px;
+}
+.start-menu ul {
+	list-style: none;
+	margin: 1em 0;
+	padding: 0;
+}
+.desktop {
+	height: 100%;
+	display: flex;
+}
+.folder-view {
+	position: relative;
+	flex: 1;
+}
+.taskbar {
+	position: absolute;
+	z-index: 2;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 27px; /* not including outline part of border */
+	display: flex;
+	flex: 1;
+}
+/* .taskbar-button is generally .task or .start-button for now */
+.taskbar button,
+.taskbar-divider,
+.tray {
+	margin: 2px;
+}
+.taskbar-divider {
+	margin-right: 0px;
+	margin-left: 0px;
+	/* TODO: maybe make that 2px rule padding on the taskbar instead and avoid reseting this */
+}
+.taskbar button {
+	line-height: 14px;
+	padding: 2px;
+	overflow: hidden; /* TODO: If tons and tons of tasks don't show icons? (smaller than width of an icon?) */
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	/* (justify-content: flex-start;) */
+}
+.taskbar button .title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.taskbar .start-button {
+	flex-shrink: 0;
+	padding: 2px 4px;
+}
+.tray {
+	display: flex;
+	flex-direction: row;
+	/* align-items: center; */
+	/* align-content: center; */
+	/* justify-content: center; */
+	line-height: 22px;
+	box-sizing: border-box;
+	vertical-align: middle;
+}
+.tray-icons {
+	display: flex;
+	align-items: center;
+	margin-left: 2px; /* XXX basically 1px, but 2px because of the way the border is done */
+}
+.tray-icon {
+	margin-left: 1px;
+}
+.taskbar-time {
+	width: 60px;
+	text-align: center;
+}
+/* TODO: offset task button contents down a px when depressed... actually most buttons */
+.tasks {
+	display: flex;
+	flex: 1;
+	height: 100%;
+}
+.task {
+	max-width: 200px;
+	width: 50%;
+	text-align: left;
+}
+.task img {
+	padding-right: 4px;
+	flex: 0 0 auto;
+}
+.desktop,
+.folder-view,
+.taskbar,
+.start-button,
+.tasks,
+.task,
+.window,
+.window-titlebar,
+.window-title {
+	cursor: default;
+	user-select: none;
+	-o-user-select: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+.window-titlebar .icon {
+	vertical-align: bottom;
+}
+.window-content {
+	margin: 0;
+	padding: 0;
+}
+.desktop-icon {
+	display: inline-block;
+	vertical-align: bottom; /* with inline-block, always */
+	margin: 5px;
+	text-align: center;
+}
+.desktop-icon .icon-wrapper {
+	display: inline-block;
+	vertical-align: bottom; /* with inline-block, always */
+	position: relative;
+}
+.desktop-icon .title {
+	line-height: 13px;
+	font-size: 9px;
+	overflow: hidden;
+	text-overflow: ellipsis; /* TODO: make this work with multiline text! This is apparently a limitation of this CSS property and ther are various crazy CSS hacks and JS libs to solve this. */
+	word-wrap: break-word; /* All browsers since IE 5.5+ */
+	overflow-wrap: break-word; /* Renamed property in CSS3 draft spec */
+}
+.desktop-icon:not(.focused) .title {
+	/* max-height: 2em would only work with line-height: 1 */
+	max-height: calc(13px * 2);
+}
+.desktop-icon.focused {
+	z-index: 1;
+}
+/* Fix dragging things (like windows) over iframes */
+.drag iframe {
+	pointer-events: none;
+}
+
+.marquee {
+	pointer-events: none;
+}
+
+.menus {
+	display: flex;
+	flex: 0 0 auto;
+}
+.menu-container {
+	position: relative;
+}
+.menu-popup {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 400000; /* so sub-menu-popups can be visible over the window */
+	box-sizing: border-box;
+}
+.menu-popup-table {
+	border-collapse: collapse;
+}
+.menu-item {
+	white-space: nowrap;
+}
+.menu-hr {
+	display: block !important;
+	height: 0;
+	width: auto;
+}
+.menu-hotkey {
+	display: inline !important;
+}
+.menu-item-checkbox-area,
+.menu-item-submenu-area {
+	min-width: 16px;
+}
+.menu-item-checkbox-area,
+.menu-item-submenu-area {
+	text-align: center;
+}
+
+.window-titlebar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.window-title-area {
+	position: relative;
+	flex: 1;
+	height: 16px; /* 100% doesn't work */
+}
+.window-title {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: inline-block !important;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.window-close-button {
+	display: block !important;
+	float: right;
+	width: 13px;
+	height: 11px;
+}
+.window-close-button:before {
+	content: '×';
+	position: relative;
+}
+
+.window-content .button-group {
+	width: 85px;
+}
+.window-content .button-group > button {
+	width: 95%;
+	padding: 3px 5px;
+}
+
+::before, ::after {
+	pointer-events: none;
+}
+
+.cursor-bully * {
+	cursor: inherit !important;
+}
+.loading-program * {
+	cursor: progress;
+}
